@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="user" type="com.example.admin.myapplication.User"/>
+        <variable name="presenter" type="com.example.admin.myapplication.DataActivity.Presenter"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView android:layout_width="wrap_content"
+                  android:onClick="@{presenter.onClick}"
+                  android:id="@+id/aaaa"
+                  android:layout_height="wrap_content"
+                  android:text="@{user.firstName}"
+                  />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text='@{user.map["dfga"]}'
+                  />
+        <TextView android:layout_width="wrap_content"
+                  android:onClick="@{()-> presenter.onClickListener(user)}"
+                  android:id="@+id/bbbb"
+                  android:layout_height="wrap_content"
+                  android:text="@{user.lastName}"/>
+        <TextView
+            android:visibility="@{user.isShow?View.GONE:View.VISIBLE}"
+            android:id="@+id/followEdittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+
+            android:id="@+id/edittext"
+            android:onTextChanged="@{presenter.onTextChanged}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <include layout="@layout/include_demo" bind:user="@{user}" bind:presenter="@{presenter}"/>
+        <ViewStub
+            android:id="@+id/viewstub"
+            android:layout="@layout/viewstub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</layout>
